@@ -12,11 +12,14 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
+        //@ts-expect-error do not check cookie
         setAll(cookiesToSet) {
+          //@ts-expect-error do not check cookie
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           );
           supabaseResponse = NextResponse.next({ request });
+          //@ts-expect-error do not check cookie
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
           );

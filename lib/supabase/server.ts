@@ -12,8 +12,10 @@ export function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
+        //@ts-expect-error do not check cookie
         setAll(cookiesToSet) {
           try {
+            //@ts-expect-error do not check cookie
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             );

@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 30% 97%;
+    --foreground: 170 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 170 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 170 30% 10%;
+    --primary: 173 80% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 43 96% 56%;
+    --secondary-foreground: 43 60% 15%;
+    --muted: 42 20% 92%;
+    --muted-foreground: 170 15% 45%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 43 60% 15%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 170 15% 88%;
+    --input: 170 15% 88%;
+    --ring: 173 80% 30%;
+    --radius: 0.75rem;
+    --font-lora: 'Lora', Georgia, serif;
+    --font-nunito: 'Nunito', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-nunito antialiased;
+    font-family: var(--font-nunito), sans-serif;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, hsla(173, 60%, 92%, 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, hsla(43, 96%, 94%, 0.3) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-lora), Georgia, serif;
+  }
+}
+
+@layer components {
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-sm border border-white/60 shadow-sm;
+  }
+  
+  .auth-card {
+    @apply bg-white/90 backdrop-blur-md border border-teal-100/60 shadow-xl shadow-teal-900/5 rounded-2xl;
+  }
+
+  .chat-bubble-user {
+    @apply bg-teal-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%] ml-auto shadow-sm;
+  }
+
+  .chat-bubble-ai {
+    @apply bg-white border border-teal-100 text-slate-700 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] shadow-sm;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200;
+    @apply text-slate-600 hover:text-teal-700 hover:bg-teal-50;
+  }
+
+  .nav-link-active {
+    @apply bg-teal-50 text-teal-700 font-semibold;
+  }
+
+  .section-heading {
+    font-family: var(--font-lora), Georgia, serif;
+    @apply text-2xl font-semibold text-slate-800;
+  }
+  
+  .field-label {
+    @apply text-sm font-semibold text-slate-600 mb-1.5;
+  }
+  
+  .severity-badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(173, 40%, 75%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(173, 60%, 55%);
+}
+
+/* Chat typing indicator */
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: hsl(173, 80%, 30%);
+  animation: typing-bounce 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* Leaf/organic pattern for auth background */
+.bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230d9488' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
